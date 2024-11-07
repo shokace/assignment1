@@ -48,40 +48,6 @@ This project is a Flask-based message persistence service designed to archive me
 
 4. The service should now be running on `http://localhost:5000`.
 
-### Local Setup
-
-If you'd like to run the app locally without Docker:
-
-1. Clone this repository:
-    ```bash
-    git clone https://github.com/shokace/assignment1.git
-    cd assignment1
-    ```
-
-2. Create a virtual environment and activate it:
-    ```bash
-    python3 -m venv env
-    source env/bin/activate  # On Windows use `env\Scripts\activate`
-    ```
-
-3. Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. Create a `.env` file in the root directory and define the necessary environment variables:
-    ```env
-    DATABASE_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/database_as1
-    JWT_SECRET_KEY=your_secret_key
-    ```
-
-5. Run the application:
-    ```bash
-    flask run
-    ```
-
-The service will be accessible at `http://localhost:5000`.
-
 ## Environment Variables
 
 Define the following environment variables in your `.env` file:
