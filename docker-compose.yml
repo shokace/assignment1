@@ -1,26 +1,37 @@
-version: '3.8'
+version: "3.8"
+
+#Create 2 Containers:
+#assignment1-db-1 is PostgreSQL
+#assignment1-app-1 is Flask container
 
 services:
-  app:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@db:5432/database_as1
-      - JWT_SECRET_KEY=your_local_jwt_secret_key
-    depends_on:
-      - db
-
   db:
     image: postgres:13
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: database_as1
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+      #Retry server start if failed
+    healthcheck: 
+      test: ["CMD", "pg_isready", "-U", "postgres"] 
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/database_as1
+      JWT_SECRET_KEY: very_secret_key
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   postgres_data:
