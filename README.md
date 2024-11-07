@@ -11,7 +11,6 @@ This project is a Flask-based message persistence service designed to archive me
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
-- [License](#license)
 
 ## Features
 
@@ -109,3 +108,8 @@ Define the following environment variables in your `.env` file:
   "sent_at": "2024-11-07T14:00:00Z",
   "role": "user"
 }
+```
+
+## Testing
+
+To test the application with Postman or other API testing tools, make requests to the running service endpoints listed above.
